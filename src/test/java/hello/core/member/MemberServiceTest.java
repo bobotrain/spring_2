@@ -17,7 +17,7 @@ public class MemberServiceTest {
         memberService.join(member);
         Member findMember = memberService.findMember(1L);
 
-        //then
+        //then  -> junit assertion사용 -> member가 findemember와 같을 시, true 반환 -> testcode 통과
         Assertions.assertThat(member).isEqualTo(findMember);
     }
 }
