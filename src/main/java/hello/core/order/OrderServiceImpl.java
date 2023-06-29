@@ -9,7 +9,7 @@ import hello.core.member.MemoryMemberRepository;
 
 public class OrderServiceImpl implements OrderService {
 
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
 
 
     //아래처럼 하면 dip의존 위배 -> 인터페이스만 의존하게 만들어야 한다.
@@ -19,7 +19,13 @@ public class OrderServiceImpl implements OrderService {
     //private final DiscountPolicy discountPolicy = new RateDiscountPolicy();
 
     //인터페이스만 의존할 수 있도록 변경
-    private DiscountPolicy discountPolicy;
+    private final DiscountPolicy discountPolicy;
+
+    //final은 반드시 생성자를 통해 할당하여야 한다.
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = discountPolicy;
+    }
 
     //alt + shift + enter
     @Override
