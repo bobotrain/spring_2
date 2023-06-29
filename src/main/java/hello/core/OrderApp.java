@@ -12,9 +12,10 @@ public class OrderApp {
     //psvm
     public static void main(String[] args) {
 
-        //객체 생성
-        MemberService memberService = new MemberServiceImpl();
-        OrderService orderService = new OrderServiceImpl();
+        //appConfig 통해 개발
+        AppConfig appConfig = new AppConfig();
+        MemberService memberService = appConfig.memberService();
+        OrderService orderService = appConfig.orderService();
 
         //데이터 작성.
         Long memberId = 1L;
