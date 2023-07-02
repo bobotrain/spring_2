@@ -2,6 +2,7 @@ package hello.core;
 
 import hello.core.discount.DiscountPolicy;
 import hello.core.discount.FixDiscountPolicy;
+import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemberService;
 import hello.core.member.MemberServiceImpl;
@@ -31,7 +32,12 @@ public class AppConfig {
     }
 
     public DiscountPolicy discountPolicy() {
-        return new FixDiscountPolicy();
+
+       //여기서 간단하게 정률 할인으로 할것이냐, 고정 할인으로 할것이냐 선수교체 간단히 할 수 있음 -> 객체화 good!
+
+       //return new FixDiscountPolicy();
+       return new RateDiscountPolicy();
+
     }
 
     public OrderService orderService() {
