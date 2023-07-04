@@ -9,6 +9,8 @@ import hello.core.member.MemberServiceImpl;
 import hello.core.member.MemoryMemberRepository;
 import hello.core.order.OrderService;
 import hello.core.order.OrderServiceImpl;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
 
 //애플리케이션 환경구성 다 여기서함 -> 애플리케이션의 실제 동작에 필요한 구현객체를 모두 생성한다.
@@ -21,25 +23,26 @@ import hello.core.order.OrderServiceImpl;
 
 //핵심정리 : MemberServiceImpl의 생성자를 통해서 어떤 구현객체를 주입할지는 오직 외부(AppConfig)에서 결정된다는 뜻.
 //MemberServiceImpl은 이제부터 의존관계에 대한 고민은 외부에 맡기고 실행에만 집중하면 된다.
+
+@Configuration
 public class AppConfig {
 
-   private MemberRepository memberRepository() {
+    @Bean
+    public MemberRepository memberRepository() {
         return new MemoryMemberRepository();
     }
-
+    @Bean
     public MemberService memberService() {
         return new MemberServiceImpl(memberRepository());
     }
-
+    @Bean
     public DiscountPolicy discountPolicy() {
-
        //여기서 간단하게 정률 할인으로 할것이냐, 고정 할인으로 할것이냐 선수교체 간단히 할 수 있음 -> 객체화 good!
-
        //return new FixDiscountPolicy();
        return new RateDiscountPolicy();
-
     }
 
+    @Bean
     public OrderService orderService() {
         return new OrderServiceImpl(memberRepository(), discountPolicy());
     }
