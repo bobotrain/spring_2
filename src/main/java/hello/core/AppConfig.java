@@ -1,7 +1,6 @@
 package hello.core;
 
 import hello.core.discount.DiscountPolicy;
-import hello.core.discount.FixDiscountPolicy;
 import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemberService;
@@ -24,7 +23,7 @@ import org.springframework.context.annotation.Configuration;
 //핵심정리 : MemberServiceImpl의 생성자를 통해서 어떤 구현객체를 주입할지는 오직 외부(AppConfig)에서 결정된다는 뜻.
 //MemberServiceImpl은 이제부터 의존관계에 대한 고민은 외부에 맡기고 실행에만 집중하면 된다.
 
-@Configuration
+//@Configuration
 public class AppConfig {
 
     @Bean
